@@ -1,0 +1,73 @@
+2024-04-29 21:46:05,403 - Mouse Pressed at (711, 892) with Button.left
+2024-04-29 21:46:05,537 - Mouse Released at (711, 892) with Button.left
+2024-04-29 21:46:07,320 - q pressed
+2024-04-29 21:46:07,752 - e pressed
+2024-04-29 21:46:07,879 - r pressed
+2024-04-29 21:46:08,005 - t pressed
+2024-04-29 21:46:08,083 - y pressed
+2024-04-29 21:46:08,185 - u pressed
+2024-04-29 21:46:08,337 - i pressed
+2024-04-29 21:46:09,087 - j pressed
+2024-04-29 21:46:09,629 - f pressed
+2024-04-29 21:46:09,819 - g pressed
+2024-04-29 21:46:09,905 - h pressed
+2024-04-29 21:46:10,007 - j pressed
+2024-04-29 21:46:10,445 - x pressed
+2024-04-29 21:46:10,563 - c pressed
+2024-04-29 21:46:10,665 - v pressed
+2024-04-29 21:46:10,768 - b pressed
+2024-04-29 21:46:10,773 - Mouse moved to (18.94 cm, 23.57 cm)
+2024-04-29 21:46:10,792 - Mouse moved to (19.00 cm, 23.57 cm)
+2024-04-29 21:46:10,802 - Mouse moved to (19.02 cm, 23.57 cm)
+2024-04-29 21:46:10,821 - Mouse moved to (19.02 cm, 23.57 cm)
+2024-04-29 21:46:10,955 - n pressed
+2024-04-29 21:46:11,969 - s pressed
+2024-04-29 21:46:12,235 - Screenshot captured
+2024-04-29 21:46:18,737 - Mouse moved to (19.05 cm, 23.57 cm)
+2024-04-29 21:46:18,747 - Mouse moved to (19.18 cm, 23.52 cm)
+2024-04-29 21:46:18,756 - Mouse moved to (19.37 cm, 23.39 cm)
+2024-04-29 21:46:18,766 - Mouse moved to (19.71 cm, 23.15 cm)
+2024-04-29 21:46:18,776 - Mouse moved to (20.13 cm, 22.67 cm)
+2024-04-29 21:46:18,785 - Mouse moved to (20.77 cm, 21.80 cm)
+2024-04-29 21:46:18,795 - Mouse moved to (21.56 cm, 20.80 cm)
+2024-04-29 21:46:18,805 - Mouse moved to (22.30 cm, 19.71 cm)
+2024-04-29 21:46:18,815 - Mouse moved to (23.12 cm, 18.63 cm)
+2024-04-29 21:46:18,824 - Mouse moved to (23.84 cm, 17.62 cm)
+2024-04-29 21:46:18,834 - Mouse moved to (24.61 cm, 16.54 cm)
+2024-04-29 21:46:18,843 - Mouse moved to (25.27 cm, 15.74 cm)
+2024-04-29 21:46:18,853 - Mouse moved to (25.90 cm, 14.87 cm)
+2024-04-29 21:46:18,863 - Mouse moved to (26.56 cm, 13.81 cm)
+2024-04-29 21:46:18,872 - Mouse moved to (27.17 cm, 12.57 cm)
+2024-04-29 21:46:18,882 - Mouse moved to (27.86 cm, 11.01 cm)
+2024-04-29 21:46:19,221 - Mouse moved to (27.91 cm, 10.95 cm)
+2024-04-29 21:46:19,230 - Mouse moved to (28.07 cm, 10.87 cm)
+2024-04-29 21:46:19,240 - Mouse moved to (28.31 cm, 10.72 cm)
+2024-04-29 21:46:19,250 - Mouse moved to (28.76 cm, 10.35 cm)
+2024-04-29 21:46:19,259 - Mouse moved to (29.47 cm, 9.71 cm)
+2024-04-29 21:46:19,269 - Mouse moved to (30.51 cm, 8.68 cm)
+2024-04-29 21:46:19,278 - Mouse moved to (31.64 cm, 7.59 cm)
+2024-04-29 21:46:19,288 - Mouse moved to (32.81 cm, 6.35 cm)
+2024-04-29 21:46:19,297 - Mouse moved to (34.05 cm, 4.82 cm)
+2024-04-29 21:46:19,308 - Mouse moved to (35.22 cm, 3.10 cm)
+2024-04-29 21:46:19,655 - Mouse moved to (35.27 cm, 3.07 cm)
+2024-04-29 21:46:19,665 - Mouse moved to (35.37 cm, 3.02 cm)
+2024-04-29 21:46:19,675 - Mouse moved to (35.45 cm, 2.94 cm)
+2024-04-29 21:46:19,684 - Mouse moved to (35.64 cm, 2.83 cm)
+2024-04-29 21:46:19,695 - Mouse moved to (35.93 cm, 2.70 cm)
+2024-04-29 21:46:19,704 - Mouse moved to (36.22 cm, 2.54 cm)
+2024-04-29 21:46:19,714 - Mouse moved to (36.51 cm, 2.35 cm)
+2024-04-29 21:46:19,723 - Mouse moved to (36.83 cm, 2.20 cm)
+2024-04-29 21:46:19,733 - Mouse moved to (37.17 cm, 1.98 cm)
+2024-04-29 21:46:19,742 - Mouse moved to (37.52 cm, 1.83 cm)
+2024-04-29 21:46:19,752 - Mouse moved to (37.81 cm, 1.64 cm)
+2024-04-29 21:46:19,761 - Mouse moved to (38.15 cm, 1.48 cm)
+2024-04-29 21:46:19,771 - Mouse moved to (38.42 cm, 1.40 cm)
+2024-04-29 21:46:19,781 - Mouse moved to (38.60 cm, 1.32 cm)
+2024-04-29 21:46:19,791 - Mouse moved to (38.79 cm, 1.27 cm)
+2024-04-29 21:46:19,801 - Mouse moved to (38.87 cm, 1.19 cm)
+2024-04-29 21:46:19,810 - Mouse moved to (38.95 cm, 1.19 cm)
+2024-04-29 21:46:19,820 - Mouse moved to (38.97 cm, 1.19 cm)
+2024-04-29 21:46:20,361 - Mouse Pressed at (1473, 45) with Button.left
+2024-04-29 21:46:20,487 - Mouse Released at (1473, 45) with Button.left
+2024-04-29 21:46:21,960 - Mouse Pressed at (1473, 45) with Button.left
+2024-04-29 21:46:22,067 - Mouse Released at (1473, 45) with Button.left
