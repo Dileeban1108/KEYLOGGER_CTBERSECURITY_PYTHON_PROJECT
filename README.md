@@ -4,15 +4,17 @@ A simple keylogger implemented in Python for educational purposes in the field o
 
 ## Features
 - Logs all keystrokes
-- Sends log files to a specified email address
+- Record the screen
+- Copy the clipboard
+- Fetch browser histories
 - Runs in the background
 
-## Technologies Used
+## Libraries Used
 - **Python**: The core programming language.
 - **pynput**: For capturing keyboard inputs.
-- **smtplib**: For sending emails.
+- **PIL**: For grab images.
 
 ## Installation
 1. Clone the repository:
    ```sh
-   git clone https://github.com/yourusername/keylogger.git
+   git clone https://github.com/Dileeban1108/KEYLOGGER_CTBERSECURITY_PYTHON_PROJECT.git
